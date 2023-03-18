@@ -9,6 +9,11 @@ test()
 
 <template>
   <h1>App根组件</h1>
+  <p>哈哈哈</p>
+  <ul>
+    <li>123</li>
+    <li>456</li>
+  </ul>
 </template>
 
 <style lang="less" scoped>
