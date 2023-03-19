@@ -1,21 +1,15 @@
 <script lang="ts" setup name="AppHeaderNav">
 import useStore from '@/store'
 const { category } = useStore()
-console.log(category.money)
+category.getAllCategory()
 </script>
 
 <template>
   <ul class="app-header-nav">
     <li class="home"><RouterLink to="/">首页</RouterLink></li>
-    <li><a href="#">美食</a></li>
-    <li><a href="#">餐厨</a></li>
-    <li><a href="#">艺术</a></li>
-    <li><a href="#">电器</a></li>
-    <li><a href="#">居家</a></li>
-    <li><a href="#">洗护</a></li>
-    <li><a href="#">孕婴</a></li>
-    <li><a href="#">服装</a></li>
-    <li><a href="#">杂货</a></li>
+    <li v-for="item in category.allCategory" :key="item.id">
+      <a href="#">{{ item.name }}</a>
+    </li>
   </ul>
 </template>
 
