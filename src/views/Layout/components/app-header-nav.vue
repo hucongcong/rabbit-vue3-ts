@@ -8,11 +8,11 @@ category.getAllCategory()
   <ul class="app-header-nav">
     <li class="home"><RouterLink to="/">首页</RouterLink></li>
     <li v-for="item in category.allCategory" :key="item.id">
-      <RouterLink to="/">{{ item.name }}</RouterLink>
+      <RouterLink :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
       <div class="layer">
         <ul>
           <li v-for="sub in item.children" :key="sub.id">
-            <RouterLink to="/">
+            <RouterLink :to="`/category/sub/${sub.id}`">
               <img :src="item.picture" alt="" />
               <p>{{ item.name }}</p>
             </RouterLink>
