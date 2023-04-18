@@ -11,7 +11,25 @@ const useCategoryPinia = defineStore('category', {
   actions: {
     async getAllCategory() {
       const res = await request.get<ApiRes<CategoryItem[]>>('/home/category/head')
+      res.data.result.forEach((item) => {
+        // 添加open属性
+        item.open = false
+      })
       this.allCategory = res.data.result
+    },
+    show(id: string) {
+      this.allCategory.forEach((item) => {
+        if (item.id === id) {
+          item.open = true
+        }
+      })
+    },
+    hide(id: string) {
+      this.allCategory.forEach((item) => {
+        if (item.id === id) {
+          item.open = false
+        }
+      })
     }
   }
 })

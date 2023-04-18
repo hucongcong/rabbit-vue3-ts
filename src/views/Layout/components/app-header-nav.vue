@@ -7,12 +7,22 @@ category.getAllCategory()
 <template>
   <ul class="app-header-nav">
     <li class="home"><RouterLink to="/">首页</RouterLink></li>
-    <li v-for="item in category.allCategory" :key="item.id">
-      <RouterLink :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
-      <div class="layer">
+    <li
+      v-for="item in category.allCategory"
+      :key="item.id"
+      @mouseenter="category.show(item.id)"
+      @mouseleave="category.hide(item.id)"
+    >
+      <RouterLink @click="category.hide(item.id)" :to="`/category/${item.id}`">
+        {{ item.name }}
+      </RouterLink>
+      <div class="layer" :class="{ open: item.open }">
         <ul>
           <li v-for="sub in item.children" :key="sub.id">
-            <RouterLink :to="`/category/sub/${sub.id}`">
+            <RouterLink
+              :to="`/category/sub/${sub.id}`"
+              @click="category.hide(item.id)"
+            >
               <img :src="item.picture" alt="" />
               <p>{{ item.name }}</p>
             </RouterLink>
@@ -52,15 +62,15 @@ category.getAllCategory()
         color: @xtxColor;
         border-bottom: 1px solid @xtxColor;
       }
-      > .layer {
-        height: 132px;
-        opacity: 1;
-      }
     }
   }
 }
 // 新增样式
 .layer {
+  &.open {
+    height: 132px;
+    opacity: 1;
+  }
   width: 1240px;
   background-color: #fff;
   position: absolute;
