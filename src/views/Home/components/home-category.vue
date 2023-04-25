@@ -18,11 +18,28 @@ const goods = computed(() => {
         :class="{ active: categoryId === item.id }"
       >
         <RouterLink :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
-        <RouterLink
-          v-for="sub in item.children.slice(0, 2)"
-          :to="`/category/sub/${sub.id}`"
-          >{{ sub.name }}</RouterLink
-        >
+        <template v-if="item.children">
+          <RouterLink
+            v-for="sub in item.children.slice(0, 2)"
+            :to="`/category/sub/${sub.id}`"
+            >{{ sub.name }}</RouterLink
+          >
+        </template>
+        <template v-else>
+          <XtxSkeleton
+            :width="60"
+            :height="18"
+            style="margin-right: 5px"
+            bg="rgba(255,255,255,0.2)"
+            animated
+          />
+          <XtxSkeleton
+            :width="50"
+            :height="18"
+            bg="rgba(255,255,255,0.2)"
+            animated
+          />
+        </template>
       </li>
     </ul>
     <!-- 弹层 -->
