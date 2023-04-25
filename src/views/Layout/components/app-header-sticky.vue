@@ -1,22 +1,13 @@
 <script lang="ts" setup name="AppHeaderSticky">
-import { onMounted, onUnmounted, ref } from 'vue'
 import AppHeaderNav from './app-header-nav.vue'
-const y = ref(0)
-const onScroll = () => {
-  y.value = window.scrollY
-}
-onMounted(() => {
-  window.addEventListener('scroll', onScroll)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', onScroll)
-})
+import { useWindowScroll } from '@vueuse/core'
+// 控制是否显示吸顶组件
+const { y } = useWindowScroll()
 </script>
 
 <template>
   <div class="app-header-sticky" :class="{ show: y >= 78 }">
-    <div class="container">
+    <div class="container" v-show="y >= 78">
       <RouterLink class="logo" to="/" />
       <AppHeaderNav />
       <div class="right">
