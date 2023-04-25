@@ -5,10 +5,19 @@ export type ApiRes<T> = {
   result: T
 }
 
+export type CategoryGoods = {
+  desc: string
+  id: string
+  name: string
+  picture: string
+  price: string
+}
+
 export type CategoryItem = {
   id: string
   name: string
   picture: string
   open: boolean
   children: CategoryItem[]
+  goods: CategoryGoods[]
 }

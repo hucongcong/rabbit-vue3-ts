@@ -33,7 +33,7 @@ category.getAllCategory()
   </ul>
 </template>
 
-<style scoed lang="less">
+<style scoped lang="less">
 .app-header-nav {
   width: 820px;
   display: flex;
